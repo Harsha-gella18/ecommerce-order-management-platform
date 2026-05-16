@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT:8084}
+
+spring:
+  application:
+    name: inventory-service
+  data:
+    mongodb:
+      uri: ${INVENTORY_MONGODB_URI:${SPRING_DATA_MONGODB_URI:mongodb://127.0.0.1:27017/inventory_db}}
+
+jwt:
+  secret: ${JWT_SECRET:ecommerce-jwt-secret-key-for-development-min-256-bits-long-for-hs256-algorithm-safety}

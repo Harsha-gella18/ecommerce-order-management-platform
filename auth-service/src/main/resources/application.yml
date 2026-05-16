@@ -1,0 +1,21 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: auth-service
+  data:
+    mongodb:
+      uri: ${AUTH_MONGODB_URI:${SPRING_DATA_MONGODB_URI:mongodb://127.0.0.1:27017/auth_db}}
+
+jwt:
+  secret: ${JWT_SECRET:ecommerce-jwt-secret-key-for-development-min-256-bits-long-for-hs256-algorithm-safety}
+  expiration-ms: 86400000
+
+# After signup, auth-service seeds user profile (name, phone, optional address) via user-service.
+app:
+  user-service-url: ${USER_SERVICE_URL:http://127.0.0.1:8082}
+
+logging:
+  level:
+    com.ecommerce: INFO

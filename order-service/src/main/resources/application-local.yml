@@ -1,0 +1,4 @@
+# Optional — same as default application.yml (Rabbit autoconfig off for localhost).
+spring:
+  application:
+    name: order-service

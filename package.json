@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-order-management-platform",
+  "private": true,
+  "description": "Orchestration: localhost via npm start or run-all-local.bat (one terminal per service).",
+  "scripts": {
+    "seed:users": "npm install --prefix scripts --silent && node scripts/seed-auth-users.mjs",
+    "local": "node scripts/run-local.mjs",
+    "start": "node scripts/run-local.mjs"
+  }
+}

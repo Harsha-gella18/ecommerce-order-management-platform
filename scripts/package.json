@@ -1,0 +1,9 @@
+{
+  "name": "ecom-platform-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongodb": "^6.10.0"
+  }
+}

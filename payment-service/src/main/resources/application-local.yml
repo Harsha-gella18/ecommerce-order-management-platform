@@ -1,0 +1,4 @@
+# Optional — same behavior as main application.yml (mock payments, Rabbit autoconfig off).
+spring:
+  application:
+    name: payment-service

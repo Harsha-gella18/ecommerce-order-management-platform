@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:8083}
+  tomcat:
+    max-http-form-post-size: 32MB
+    max-swallow-size: 32MB
+
+spring:
+  application:
+    name: product-service
+  servlet:
+    multipart:
+      max-file-size: 12MB
+      max-request-size: 32MB
+  codec:
+    max-in-memory-size: 32MB
+  data:
+    mongodb:
+      uri: ${PRODUCT_MONGODB_URI:${SPRING_DATA_MONGODB_URI:mongodb://127.0.0.1:27017/product_db}}
+
+jwt:
+  secret: ${JWT_SECRET:ecommerce-jwt-secret-key-for-development-min-256-bits-long-for-hs256-algorithm-safety}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

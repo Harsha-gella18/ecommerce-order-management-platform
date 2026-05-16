@@ -1,0 +1,13 @@
+**/target/
+**/node_modules/
+**/dist/
+**/.idea/
+**/.vscode/
+*.iml
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+.env
+.env.local
+scripts/atlas-mongodb.ps1

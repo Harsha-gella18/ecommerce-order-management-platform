@@ -1,0 +1,34 @@
+# 1. Copy this file to: scripts\atlas-mongodb.ps1 (gitignored — do not commit secrets)
+# 2. Edit USER, PASS, HOST below (same host as Compass / Atlas).
+# 3. In the SAME terminal where you start a service, run ONE of:
+#      . .\scripts\atlas-mongodb.ps1 -Database auth_db
+#      . .\scripts\atlas-mongodb.ps1 -Database user_db
+#    Then cd into that service and mvn / npm / uvicorn as usual.
+
+param(
+    [Parameter(Mandatory = $true)]
+    [ValidateSet(
+        "auth_db", "user_db", "product_db", "inventory_db",
+        "cart_db", "order_db", "payment_db", "notification_db", "analytics_db"
+    )]
+    [string]$Database
+)
+
+$User = "YOUR_ATLAS_USERNAME"
+$Pass = "YOUR_ATLAS_PASSWORD"
+$HostName = "cluster0.xxxxx.mongodb.net"
+
+$p = [uri]::EscapeDataString($Pass)
+$u = [uri]::EscapeDataString($User)
+$uri = "mongodb+srv://${u}:${p}@${HostName}/${Database}?retryWrites=true&w=majority&appName=Cluster0"
+
+if ($Database -eq "cart_db" -or $Database -eq "notification_db" -or $Database -eq "analytics_db") {
+    $env:MONGODB_URI = $uri
+    Remove-Item Env:SPRING_DATA_MONGODB_URI -ErrorAction SilentlyContinue
+    Write-Host "Set MONGODB_URI for $Database"
+}
+else {
+    $env:SPRING_DATA_MONGODB_URI = $uri
+    Remove-Item Env:MONGODB_URI -ErrorAction SilentlyContinue
+    Write-Host "Set SPRING_DATA_MONGODB_URI for $Database"
+}
